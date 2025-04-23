@@ -35,12 +35,21 @@ const router = createBrowserRouter([
       },
       {
         path:'user/:userId',
-        loader:({params})=>fetch('https://jsonplaceholder.typicode.com/users'),
+        loader:({params})=>
+          fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`),
         Component:UserDetails,
-      }
+      },
+      // {
+      //   path:"*",
+      //   element:<h2>Error.Your url is not found</h2>
+      // }
     ]
+    
   },
-  
+  {
+    path:"*",
+    element:<h2 className='text-center text-4xl font-bold mx-auto my-20'> Not found :404 Status</h2>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
